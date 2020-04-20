@@ -9,73 +9,72 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class RoomServiceTests {
 
-    private static final String MSG_01 = "circle object returned by createCircle(..) should not be null";
+    private static final String MSG_01 = "square object returned by createSquare(..) should not be null";
     private static final String MSG_02 = "rectangle object returned by createRectangle(..) should not be null";
-    private static final String MSG_03 = "compareShape should return 0 for shapes with equal area";
-    private static final String MSG_04 = "compareShape should return 1 for first shape parameter with greater area";
-    private static final String MSG_05 = "compareShape should return -1 for first shape parameter with lesser area";
-    private static final String MSG_06 = "shape summary string returned by getShapeSummary is not as per requirement";
+    private static final String MSG_03 = "compareRoom should return 0 for rooms with equal area";
+    private static final String MSG_04 = "compareRoom should return 1 for first room parameter with greater area";
+    private static final String MSG_05 = "compareRoom should return -1 for first room parameter with lesser area";
+    private static final String MSG_06 = "room summary string returned by getRoomSummary is not as per requirement";
 
     private static final String REGEX = "\\s+";
 
-    private ShapeService shapeService;
+    private RoomService roomService;
 
     @BeforeEach
     public void setUp() {
-        shapeService = new ShapeService();
+        roomService = new RoomService();
     }
 
     @AfterEach
     public void tearDown() {
-        shapeService = null;
+        roomService = null;
     }
 
     @Test
-    public void givenPropertyValuesThenCreateCircleObject() {
-        final Circle circle = shapeService.createCircle("blue", 10);
-        assertNotNull(circle, MSG_01);
+    public void givenPropertyValuesThenCreateSquareObject() {
+        final Square square = roomService.createSquare("blue", 10);
+        assertNotNull(square, MSG_01);
     }
 
     @Test
     public void givenPropertyValuesThenCreateRectangleObject() {
-        final Rectangle rectangle = shapeService.createRectangle("blue", 10, 10);
+        final Rectangle rectangle = roomService.createRectangle("blue", 10, 10);
         assertNotNull(rectangle, MSG_02);
     }
 
     @Test
-    public void givenTwoShapesWhenAreaEqualThenReturnZero() {
+    public void givenTwoRoomsWhenAreaEqualThenReturnZero() {
         final Rectangle one = new Rectangle("blue", 10, 20);
         final Rectangle two = new Rectangle("blue", 50, 4);
-        assertEquals(0, ShapeService.compareShapeArea(one, two), MSG_03);
+        assertEquals(0, RoomService.compareRoomArea(one, two), MSG_03);
     }
 
     @Test
-    void givenTwoShapesWhenFirstShapeAreaGreaterThenReturnOne() {
-        final Circle one = new Circle("blue", 50);
+    void givenTwoRoomsWhenFirstRoomAreaGreaterThenReturnOne() {
+        final Square one = new Square("blue", 50);
         final Rectangle two = new Rectangle("blue", 50, 4);
-        assertEquals(1, ShapeService.compareShapeArea(one, two), MSG_04);
+        assertEquals(1, RoomService.compareRoomArea(one, two), MSG_04);
     }
 
     @Test
-    public void givenTwoShapesWhenFirstShapeAreaSmallerThenReturnMinusOne() {
-        final Circle one = new Circle("blue", 10);
+    public void givenTwoRoomsWhenFirstRoomAreaSmallerThenReturnMinusOne() {
+        final Square one = new Square("blue", 10);
         final Rectangle two = new Rectangle("blue", 50, 4);
-        assertEquals(-1, ShapeService.compareShapeArea(one, two), MSG_05);
+        assertEquals(-1, RoomService.compareRoomArea(one, two), MSG_05);
     }
 
     @Test
-    public void givenShapeWhenCircleObjectThenReturnCircleSummary() {
-        final Circle circle = new Circle("blue", 10);
-        String expectedSummary = "Circle [colour=blue, radius=10]\nArea : 314 Perimeter : 63";
-        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), ShapeService.getShapeSummary(circle).toLowerCase().replaceAll(REGEX, " "), MSG_06);
+    public void givenRoomWhenSquareObjectThenReturnSquareSummary() {
+        final Square square = new Square("blue", 10);
+        String expectedSummary = "Square [colour=blue, side=10]\nArea : 100 Perimeter : 40";
+        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), RoomService.getRoomSummary(square).toLowerCase().replaceAll(REGEX, " "), MSG_06);
     }
 
     @Test
-    public void givenShapeWhenRectangleObjectThenReturnRectangleSummary() {
+    public void givenRoomWhenRectangleObjectThenReturnRectangleSummary() {
         final Rectangle rectangle = new Rectangle("blue", 50, 4);
         String expectedSummary = "Rectangle [colour=blue, length=50, breadth=4]\nArea : 200 Perimeter : 108";
-        ;
-        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), ShapeService.getShapeSummary(rectangle).toLowerCase().replaceAll(REGEX, " "), MSG_06);
+        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), RoomService.getRoomSummary(rectangle).toLowerCase().replaceAll(REGEX, " "), MSG_06);
     }
 
 }

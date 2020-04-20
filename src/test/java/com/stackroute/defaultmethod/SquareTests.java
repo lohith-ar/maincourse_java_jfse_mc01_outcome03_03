@@ -9,52 +9,52 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SquareTests {
 
-    private static final String MSG_01 = "circle object should be of type AbstractShape and Shape";
-    private static final String MSG_02 = "circle properties not set properly by constructor";
-    private static final String MSG_03 = "circle area/perimeter returned are not correct";
-    private static final String MSG_04 = "circle details returned by toString are not as per requirement";
+    private static final String MSG_01 = "square object should be of type AbstractRoom and Room";
+    private static final String MSG_02 = "square properties not set properly by constructor";
+    private static final String MSG_03 = "square area/perimeter returned are not correct";
+    private static final String MSG_04 = "square details returned by toString are not as per requirement";
 
-    private Circle circle;
+    private Square square;
 
     @BeforeEach
     public void setUp() {
-        circle = new Circle("brown", 10);
+        square = new Square("brown", 10);
     }
 
     @AfterEach
     public void tearDown() {
-        circle = null;
+        square = null;
     }
 
     @Test
-    public void givenCircleClassThenShouldBeOfShapeType() {
-        assertTrue(Shape.class.isAssignableFrom(Circle.class), MSG_01);
+    public void givenSquareClassThenShouldBeOfRoomType() {
+        assertTrue(Room.class.isAssignableFrom(Square.class), MSG_01);
     }
 
     @Test
-    public void givenCircleClassThenShouldBeOfAbstractShapeType() {
-        assertTrue(AbstractShape.class.isAssignableFrom(Circle.class), MSG_01);
+    public void givenSquareClassThenShouldBeOfAbstractRoomType() {
+        assertTrue(AbstractRoom.class.isAssignableFrom(Square.class), MSG_01);
     }
 
     @Test
-    public void givenCircleObjectThenPropertiesAreSet() {
-        assertEquals(circle.getColour(), "brown", MSG_02);
-        assertEquals(circle.getRadius(), 10, MSG_02);
+    public void givenSquareObjectThenPropertiesAreSet() {
+        assertEquals(square.getColour(), "brown", MSG_02);
+        assertEquals(square.getSide(), 10, MSG_02);
     }
 
     @Test
-    public void givenCircleObjectThenGetCircleDetails() {
-        String expected = "Circle [colour=brown, radius=10]";
-        assertEquals(circle.toString().toLowerCase(), expected.toLowerCase(), MSG_04);
+    public void givenSquareObjectThenGetSquareDetails() {
+        String expected = "Square [colour=brown, side=10]";
+        assertEquals(square.toString().toLowerCase(), expected.toLowerCase(), MSG_04);
     }
 
     @Test
-    public void givenCircleObjectThenGetArea() {
-        assertEquals(314.16, circle.getArea(), 0.01, MSG_03);
+    public void givenSquareObjectThenGetArea() {
+        assertEquals(100, square.getArea(), 0.01, MSG_03);
     }
 
     @Test
-    public void givenCircleObjectThenGetPerimeter() {
-        assertEquals(62.83, circle.getPerimeter(), 0.01, MSG_03);
+    public void givenSquareObjectThenGetPerimeter() {
+        assertEquals(40, square.getPerimeter(), 0.01, MSG_03);
     }
 }

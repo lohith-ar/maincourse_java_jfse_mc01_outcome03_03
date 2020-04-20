@@ -4,76 +4,58 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RectangleTests {
 
-    private static final String MSG_01 = "square object returned by createSquare(..) should not be null";
-    private static final String MSG_02 = "rectangle object returned by createRectangle(..) should not be null";
-    private static final String MSG_03 = "compareRoom should return 0 for rooms with equal area";
-    private static final String MSG_04 = "compareRoom should return 1 for first room parameter with greater area";
-    private static final String MSG_05 = "compareRoom should return -1 for first room parameter with lesser area";
-    private static final String MSG_06 = "room summary string returned by getRoomSummary is not as per requirement";
+    private static final String MSG_01 = "rectangle object should be of type AbstractRoom and Room";
+    private static final String MSG_02 = "rectangle properties not set properly by constructor";
+    private static final String MSG_03 = "rectangle area/perimeter returned is not correct";
+    private static final String MSG_04 = "rectangle details returned by toString are not as per requirement";
 
-    private static final String REGEX = "\\s+";
-
-    private RoomService roomService;
+    private Rectangle rectangle;
 
     @BeforeEach
     public void setUp() {
-        roomService = new RoomService();
+        rectangle = new Rectangle("brown", 10, 20);
     }
 
     @AfterEach
     public void tearDown() {
-        roomService = null;
+        rectangle = null;
     }
 
     @Test
-    public void givenPropertyValuesThenCreateSquareObject() {
-        final Square square = roomService.createSquare("blue", 10);
-        assertNotNull(square, MSG_01);
+    public void givenRectangleThenShouldBeOfRoomType() {
+        assertTrue(Room.class.isAssignableFrom(Rectangle.class), MSG_01);
     }
 
     @Test
-    public void givenPropertyValuesThenCreateRectangleObject() {
-        final Rectangle rectangle = roomService.createRectangle("blue", 10, 10);
-        assertNotNull(rectangle, MSG_02);
+    public void givenRectangleThenShouldBeOfAbstractRoomType() {
+        assertTrue(AbstractRoom.class.isAssignableFrom(Rectangle.class), MSG_01);
     }
 
     @Test
-    public void givenTwoRoomsWhenAreaEqualThenReturnZero() {
-        final Rectangle one = new Rectangle("blue", 10, 20);
-        final Rectangle two = new Rectangle("blue", 50, 4);
-        assertEquals(0, RoomService.compareRoomArea(one, two), MSG_03);
+    public void givenRectangleObjectThenPropertiesAreSet() {
+        assertEquals(rectangle.getColour(), "brown", MSG_02);
+        assertEquals(rectangle.getLength(), 10, MSG_02);
+        assertEquals(rectangle.getBreadth(), 20, MSG_02);
     }
 
     @Test
-    void givenTwoRoomsWhenFirstRoomAreaGreaterThenReturnOne() {
-        final Square one = new Square("blue", 50);
-        final Rectangle two = new Rectangle("blue", 50, 4);
-        assertEquals(1, RoomService.compareRoomArea(one, two), MSG_04);
+    public void givenRectangleObjectThenGetRectangleDetails() {
+        String expected = "Rectangle [colour=brown, length=10, breadth=20]";
+        assertEquals(rectangle.toString().toLowerCase(), expected.toLowerCase(), MSG_04);
     }
 
     @Test
-    public void givenTwoRoomsWhenFirstRoomAreaSmallerThenReturnMinusOne() {
-        final Square one = new Square("blue", 15);
-        final Rectangle two = new Rectangle("blue", 50, 4);
-        assertEquals(1, RoomService.compareRoomArea(one, two), MSG_05);
+    public void givenRectangleObjectThenGetArea() {
+        assertEquals(200, rectangle.getArea(), 0.01, MSG_03);
     }
 
     @Test
-    public void givenRoomWhenSquareObjectThenReturnSquareSummary() {
-        final Square square = new Square("blue", 10);
-        String expectedSummary = "Square [colour=blue, side=10]\nArea : 100 Perimeter : 40";
-        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), RoomService.getRoomSummary(square).toLowerCase().replaceAll(REGEX, " "), MSG_06);
-    }
-
-    @Test
-    public void givenRoomWhenRectangleObjectThenReturnRectangleSummary() {
-        final Rectangle rectangle = new Rectangle("blue", 50, 4);
-        String expectedSummary = "Rectangle [colour=blue, length=50, breadth=4]\nArea : 200 Perimeter : 108";
-        ;
-        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), RoomService.getRoomSummary(rectangle).toLowerCase().replaceAll(REGEX, " "), MSG_06);
+    public void givenRectangleObjectThenGetPerimeter() {
+        assertEquals(60, rectangle.getPerimeter(), 0.01, MSG_03);
     }
 }
