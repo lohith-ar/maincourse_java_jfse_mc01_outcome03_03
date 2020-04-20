@@ -1,4 +1,4 @@
-package com.stackroute.oops;
+package com.stackroute.defaultmethod;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,21 +60,22 @@ public class RoomServiceTests {
     public void givenTwoShapesWhenFirstShapeAreaSmallerThenReturnMinusOne() {
         final Circle one = new Circle("blue", 10);
         final Rectangle two = new Rectangle("blue", 50, 4);
-        assertEquals(1, ShapeService.compareShapeArea(one, two), MSG_05);
+        assertEquals(-1, ShapeService.compareShapeArea(one, two), MSG_05);
     }
 
     @Test
     public void givenShapeWhenCircleObjectThenReturnCircleSummary() {
         final Circle circle = new Circle("blue", 10);
         String expectedSummary = "Circle [colour=blue, radius=10]\nArea : 314 Perimeter : 63";
-        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), ShapeService.getShapeSummary(circle).toLowerCase().replaceAll(REGEX, " "),MSG_06);
+        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), ShapeService.getShapeSummary(circle).toLowerCase().replaceAll(REGEX, " "), MSG_06);
     }
 
     @Test
     public void givenShapeWhenRectangleObjectThenReturnRectangleSummary() {
         final Rectangle rectangle = new Rectangle("blue", 50, 4);
-        String expectedSummary = "Rectangle [colour=blue, length=50, breadth=4]\nArea : 200 Perimeter : 108";;
-        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), ShapeService.getShapeSummary(rectangle).toLowerCase().replaceAll(REGEX, " "),MSG_06);
+        String expectedSummary = "Rectangle [colour=blue, length=50, breadth=4]\nArea : 200 Perimeter : 108";
+        ;
+        assertEquals(expectedSummary.toLowerCase().replaceAll(REGEX, " "), ShapeService.getShapeSummary(rectangle).toLowerCase().replaceAll(REGEX, " "), MSG_06);
     }
 
 }

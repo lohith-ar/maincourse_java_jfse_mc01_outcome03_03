@@ -1,4 +1,4 @@
-package com.stackroute.oops;
+package com.stackroute.defaultmethod;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +35,7 @@ public class AbstractRoomTests {
     public void givenAbstractRoomObjectWhenSquareThenShouldSetColor() {
         assertEquals("brown", squareRoom.getColour(), MSG_02);
     }
+
     @Test
     public void givenAbstractRoomObjectWhenRectangleThenShouldSetColor() {
         assertEquals("green", rectangleRoom.getColour(), MSG_02);
