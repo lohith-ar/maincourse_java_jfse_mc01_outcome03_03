@@ -1,1 +1,0 @@
-This file is intentionally created to keep the src/main/java folder in gitlab and can be deleted
