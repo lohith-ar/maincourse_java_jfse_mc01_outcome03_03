@@ -62,10 +62,12 @@ This exercise should be completed using Test Driven Development Technique.
        + createRectangle(String color, int length, int breadth): Rectangle
             - Create a Rectangle object and return it
        + compareRoomArea(Room one, Room two): int
+            - This method should be static.
             - Method should return 0 when areas of room are equal. Should return 1, if the one's area is greater than two's area,
-                      else should return -1
+                      else should return -1.
        + getRoomSummary(Room room): String
-            - Should return the toString() for the room appended with Rounded area and perimeter
+            - This method should be static.
+            - Should return the toString() for the room appended with Rounded area and perimeter.
    
   Class Square 
   

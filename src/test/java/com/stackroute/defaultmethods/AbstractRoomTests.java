@@ -1,4 +1,4 @@
-package com.stackroute.defaultmethod;
+package com.stackroute.defaultmethods;
 
 public class AbstractRoomTests {
 
